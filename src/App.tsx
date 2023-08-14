@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import "./App.css";
 import { transpose } from "chord-transposer";
+import gitHubLogoBlack from './assets/github-mark-black.svg'
+import gitHubLogoWhite from './assets/github-mark-white.svg'
 
 function App() {
   const [input, setInput] = useState("");
@@ -47,6 +49,14 @@ function App() {
 
   return (
     <>
+      <header>
+        <a className="github" href="https://github.com/benlind/chord-transposer-app" target="_blank">
+          <img className="white" src={gitHubLogoWhite} alt="GitHub" />
+          <img className="black" src={gitHubLogoBlack} alt="GitHub" />
+        </a>
+        <h1>Chord Transposer</h1>
+        <p>Paste a song chord sheet into the left box, then use the buttons to transpose.</p>
+      </header>
       <section className="controls">
         <div className="original-key">
           Original key: <strong>{originalKey}</strong>
