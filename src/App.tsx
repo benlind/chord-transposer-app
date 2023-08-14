@@ -9,7 +9,8 @@ function App() {
   const [output, setOutput] = useState("");
   const [originalKey, setOriginalKey] = useState("?");
   const [newKey, setNewKey] = useState("?");
-  const [showCopyIndicator, setShowCopyIndicator] = useState(false);
+  const [showCopiedBorder, setShowCopiedBorder] = useState(false);
+  const [showCopiedMessage, setShowCopiedMessage] = useState(false);
 
   function getKey(input: string) {
     try {
@@ -38,9 +39,14 @@ function App() {
   }
 
   function copyText() {
+    if (!output.trim()) {
+      return
+    }
     navigator.clipboard.writeText(output);
-    setShowCopyIndicator(true);
-    setTimeout(() => setShowCopyIndicator(false), 250);
+    setShowCopiedBorder(true);
+    setShowCopiedMessage(true);
+    setTimeout(() => setShowCopiedBorder(false), 250);
+    setTimeout(() => setShowCopiedMessage(false), 1250);
   }
 
   useEffect(() => {
@@ -76,12 +82,16 @@ function App() {
           placeholder="Paste your chord sheet here"
         ></textarea>
 
-        <textarea
-          className={`output ${showCopyIndicator && "green"}`}
-          readOnly
-          value={output}
-          onClick={copyText}
-        ></textarea>
+        <div className='output'>
+          <div className={`copied button ${showCopiedMessage && "show"}`}>✅ Copied to clipboard</div>
+          <textarea
+            className={`${showCopiedBorder && "green"}`}
+            readOnly
+            value={output}
+            onClick={copyText}
+            placeholder='The transposed sheet will appear here'
+          ></textarea>
+        </div>
       </section>
     </>
   );
