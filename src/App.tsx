@@ -67,8 +67,8 @@ function App() {
         <div className="original-key">
           Original key: <strong>{originalKey}</strong>
         </div>
-        <button onClick={() => transposeDown()}>Transpose ⬇️</button>
-        <button onClick={() => transposeUp()}>Transpose ⬆️</button>
+        <button onClick={() => transposeDown()}>Transpose Down ⬇️</button>
+        <button onClick={() => transposeUp()}>Transpose Up ⬆️</button>
         <div className="new-key">
           New key: <strong>{newKey}</strong>
         </div>
